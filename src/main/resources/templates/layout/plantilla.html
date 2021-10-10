@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:seg="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Control Clientes</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:fragment="header">
+            <h1 th:text="#{plantilla.titulo}">titulo</h1>
+        </header>
+
+        <footer th:fragment="footer">
+            <div>
+                <br/><!-- comment -->
+                <a th:href="@{/(lang=es)}">ES</a>|
+                <a th:href="@{/(lang=en)}">EN</a>|
+                <span> [[#{plantilla.pie-pagina }]] Copyright Jarley Style </span>
+                <form method="post" th:action="@{/logout}"><!<!-- para q use lo de cerrar sesison -->
+                    <b>User </b><span sec:authentication="name">usuario que hizo login</span> |
+                    <b>Roles </b><span sec:authentication="principal.authorities">Roles </span> |
+                    <br/>
+                    
+                    <a href="#" onclick="this.parentNode.submit();">logout</a>
+                </form>
+            </div>
+        </footer>
+
+    </body>
+</html>
