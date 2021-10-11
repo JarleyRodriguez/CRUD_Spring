@@ -13,12 +13,10 @@
         <div>
             <header th:replace="layout/plantilla :: header"></header>
             <!-- se agregar seguridad dependiendo en el usuario -->
-
             <a sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{/agregar}">[[#{persona.crear}]]</a>
             <!-- tambien puede ser asi
             <a th:href="@{/agregar} " th:text="#{persona.crear}" ></a>
             -->
-
             <br>
             <!--<p th:text="${mensaje}"> </p> -->
             <!-- <p th:text="${saludo}"> </p> -->
@@ -51,10 +49,8 @@
             </div>
             <!<!-- if  de si la lista esta vacia -->
             <div th:if="${personas.empty or personas == null}" th:taxt="#{persona.listavacia}">
-
             </div>
         </div>
-
     </body>
     <footer th:replace="layout/plantilla ::footer"></footer>
 </html>

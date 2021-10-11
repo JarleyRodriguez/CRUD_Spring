@@ -38,31 +38,48 @@
                                     <a href="#" onclick="this.parentNode.submit();" class="nav-link">
                                         <i class="fas fa-user-times"></i> [[#{barra.salir}]]
                                     </a>
-                                    </form>
+                                </form>
                             </li>
-
                         </ul>
-
                     </div>
                 </div>
             </nav>
+
+            <section id="name-header" class="py-2 bg-info text-white" >
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>
+                                <i class="fas fa-cog"></i>[[#{plantilla.titulo}]]
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
         </header>
 
-        <footer th:fragment="footer">
-            <div>
-                <br/><!-- comment -->
-                <a th:href="@{/(lang=es)}">ES</a>|
-                <a th:href="@{/(lang=en)}">EN</a>|
-                <span> [[#{plantilla.pie-pagina }]] Copyright Jarley Style </span>
-                <form method="post" th:action="@{/logout}"><!-- para q use lo de cerrar sesison -->
+        <footer th:fragment="footer"class="bg-warning text-white mt-5 p-5">
+            <div class="container">
+                <div class="col-6">
+                    <p class="lead text-cemter " >
+                        <a th:href="@{/(lang=es)}">ES</a>|
+                        <a th:href="@{/(lang=en)}">EN</a>|
+                        <span> [[#{plantilla.pie-pagina }]] &copy JarleyStyle </span>
+                    </p>
+                </div>
+                <!-- como ya tenemos lode cerrar secion en el head este formulario ya no lo usaremos  -->
+                
+                <!-- comment 
+                <form method="post" th:action="@{/logout}"><!-- para q use lo de cerrar sesison 
                     <b>User </b><span sec:authentication="name">usuario que hizo login</span> |
                     <b>Roles </b><span sec:authentication="principal.authorities">Roles </span> |
                     <br/>
 
                     <a href="#" onclick="this.parentNode.submit();">logout</a>
-                </form>
+                </form> 
+                -->
             </div>
         </footer>
-
     </body>
 </html>
