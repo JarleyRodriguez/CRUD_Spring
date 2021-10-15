@@ -2,9 +2,10 @@
 
 <!-- para manejar infromacion dinamica con thymeleaf se agrega al html  lo siguiente -->
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
 
-     <head th:replace="layout/plantilla :: head">
+    <head th:replace="layout/plantilla :: head">
         <title>Control  </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,15 @@
     <body>
         <div>
             <header th:replace="layout/plantilla :: header"></header>
+            
+            <section th:replace="layout/botonesAgregar :: botonesAgregar"></section>
+            <section th:replace="layout/listadoClientes :: listadoClientes"></section>
+            <!--
+            <section th:replace="layout/agregarCliente :: agregarCliente"></section>
+            
+           -->
+            <footer th:replace="layout/plantilla ::footer"></footer>
+            
             <!-- se agregar seguridad dependiendo en el usuario -->
             <a sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{/agregar}">[[#{persona.crear}]]</a>
             <!-- tambien puede ser asi
@@ -21,36 +31,11 @@
             <!--<p th:text="${mensaje}"> </p> -->
             <!-- <p th:text="${saludo}"> </p> -->
             <br>
-            <!<!-- if verificando que contenga algo la lista  -->
-            <div th:if="${personas != null  and !personas.empty}">
-                <table border=1px>
-                    <tr>
-                        <th>[[#{persona.nombre}]]</th>
-                        <th>[[#{persona.apellido}]]</th>
-                        <th>[[#{persona.email}]]</th>
-                        <th th:text="#{persona.telefono}"></th>
-                        <th th:text="#{persona.saldo}"></th>
-                        <th sec:authorize="hasRole('ROLE_ADMIN')"   th:text="#{action.editar}"></th>
-                        <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{action.eliminar}]]</th>
-                    </tr>
-                    <!<!-- for each para iterar la lista resivida -->
-                    <tr th:each="persona : ${personas}">
-                        <td th:text="${persona.cliente_nombre}">[[#{persona.nombre}]] </td>
-                        <td th:text="${persona.cliente_apellido}">[[#{persona.apellido}]] </td>
-                        <td th:text="${persona.cliente_email}">[[#{persona.email}]] </td>
-                        <td th:text="${persona.cliente_telefono}">[[#{persona.telefono}]]</td>
-                        <td th:text="${persona.cliente_saldo} ">[[#{persona.saldo}]]</td>
-                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${persona.idCliente} " th:text="#{action.editar}"/></td>
-                        <!-- puede ser eld e eliminar de esta forma tambien  
-                        solo se modificaria tambien en el controladot ambas formas funcionana-->
-                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar (idCliente=${persona.idCliente})}" th:text="#{action.eliminar}"/></td>
-                    </tr>   
-                </table>
-            </div>
-            <!<!-- if  de si la lista esta vacia -->
-            <div th:if="${personas.empty or personas == null}" th:taxt="#{persona.listavacia}">
-            </div>
+            <!-- if verificando que contenga algo la lista  -->
+          
+            <!-- if  de si la lista esta vacia -->
+            
         </div>
     </body>
-    <footer th:replace="layout/plantilla ::footer"></footer>
+
 </html>

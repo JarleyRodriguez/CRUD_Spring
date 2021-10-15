@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>listado clientes</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+    <body>
+        <section th:fragment="listadoClientes" id="clientes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{persona.titulo-lista}]]</h4>
+                            </div>
+                            <div th:if="${personas != null and !personas.empty}">
+                                <table class="table table-strype">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>[[#{persona.nombre}]]</th>
+                                            <th>[[#{persona.apellido}]]</th>
+                                            <th>[[#{persona.email}]]</th>
+                                            <th th:text="#{persona.telefono}"></th>
+                                            <th th:text="#{persona.saldo}"></th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')"   th:text="#{action.editar}"></th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{action.eliminar}]]</th>
+                                        </tr>
+                                    </thead>
+                                    <!-- for each para iterar la lista resivida -->
+                                    <tbody >
+                                        <tr th:each="persona, contador : ${personas}">
+                                            <td>[[${contador.count}]] </td>
+                                            <td th:text="${persona.cliente_nombre}">[[#{persona.nombre}]] </td>
+                                            <td th:text="${persona.cliente_apellido}">[[#{persona.apellido}]] </td>
+                                            <td th:text="${persona.cliente_email}">[[#{persona.email}]] </td>
+                                            <td th:text="${persona.cliente_telefono}">[[#{persona.telefono}]]</td>
+                                            <td th:text="${new java.text.DecimalFormat('$#,##0.00').format(persona.cliente_saldo)} ">[[#{persona.saldo}]]</td>
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                                <a th:href="@{/editar/} + ${persona.idCliente} "  class="btn btn-secondary" >
+                                                    <i class="fas fa-angle-double-right"> [[#{action.editar}]]</i>
+                                                </a>
+                                            </td>
+                                            <!-- puede ser eld e eliminar de esta forma tambien  
+                                            solo se modificaria tambien en el controladot ambas formas funcionana-->
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                                <a th:href="@{/eliminar (idCliente=${persona.idCliente})}" class="btn btn-dark">
+                                                     <i class="fas fa-angle-double-right"> [[#{action.eliminar}]]</i>
+                                                </a>
+                                            </td>
+                                        </tr>   
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div  class="text-center p-2" th:if="${personas.empty or personas == null}" th:taxt="#{persona.listavacia}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
