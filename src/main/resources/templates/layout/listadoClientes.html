@@ -64,6 +64,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="card text-center bg-danger text-white mb-3">
+                            <div class="card-body">
+                                <h3 th:text="#{persona.saldoTotal}">saldo total</h3>
+                                <h4 class="display-4">[[${new java.text.DecimalFormat('$#,##0.00').format(saldoTotal) }]]</h4>
+                            </div>
+                        </div>  
+                        <div class="card text-center bg-success text-white mb-3">
+                        <div class="card-body">
+                            <h3 th:textt="#{persona.totalclientes}">total cleintes </h3>
+                            <h4 class="display-4">
+                                <i class="fas fa-users"></i> [[${totalClientes}]]
+                            </h4>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </section>

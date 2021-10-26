@@ -37,13 +37,21 @@ public class ControladorInicio {
         // para recuperacion de informacion basta con 
         // antes de persona service
         //var personas = personaDao.findAll(); // este recupera una lista de personas
-
+       
         // ahora para recuperar infromacion
         var personas = personaService.listarPersona();
+        var saldoTotal =0D;
+        for(var p : personas){
+        saldoTotal += p.getCliente_saldo();
+                }
+        model.addAttribute("saldoTotal", saldoTotal);
+        model.addAttribute("totalClientes", personas.size());
+        
 
 // se manda la lista vacia para verificar que funcionen los if
 //List <Persona> personas = new ArrayList<>(); 
         model.addAttribute("personas", personas);
+       
         return "index";
     }
 
