@@ -21,25 +21,26 @@
                         </div>
                         <form th:action="@{/guardar}" th:object="${persona}" method="post" class="was-validated">
                             <div class="modal-body">
+                                
                                 <div class="form-group">
                                     <label  for="nombre" th:text="#{persona.nombre}"></label>
-                                    <input type="text"  class="form-control" name="nombre" required="true"/>
+                                    <input type="text"  class="form-control" name="cliente_nombre" required="true"/>
                                 </div>
                                 <div class="form-group">
                                     <label  for="apellido" th:text="#{persona.apellido}"></label>
-                                    <input type="text"  class="form-control" name="apellido" required="true"/>
+                                    <input type="text"  class="form-control" name="cliente_apellido" required="true"/>
                                 </div>
                                  <div class="form-group">
                                     <label  for="email" th:text="#{persona.email}"></label>
-                                    <input type="email"  class="form-control" name="email" required="true"/>
+                                    <input type="email"  class="form-control" name="cliente_email" required="true"/>
                                 </div>
                                  <div class="form-group">
                                     <label  for="telefono" th:text="#{persona.telefono}"></label>
-                                    <input type="tel"  class="form-control" name="telefono" />
+                                    <input type="text"  class="form-control" name="cliente_telefono" />
                                 </div>
                                  <div class="form-group">
                                     <label  for="saldo" th:text="#{persona.saldo}"></label>
-                                    <input type="number"  class="form-control" name="saldo" required="true" step="any"/>
+                                    <input type="number"  class="form-control" name="cliente_saldo" required="true" step="any"/>
                                 </div>
                             </div>
                             <div class=" modal-footer">

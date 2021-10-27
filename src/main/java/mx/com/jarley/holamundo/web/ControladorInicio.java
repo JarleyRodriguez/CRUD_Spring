@@ -32,14 +32,15 @@ public class ControladorInicio {
     @GetMapping("/")
     public String inicio(Model model , @AuthenticationPrincipal User user) {
         // se puede mandar a consola el usuario q inicio seesin
+        // ahora para recuperar infromacion
+        var personas = personaService.listarPersona();
         log.info("usuario que inicio sesion: "+ user);
         log.info("ejecutando el servidor spring mvc");
         // para recuperacion de informacion basta con 
         // antes de persona service
         //var personas = personaDao.findAll(); // este recupera una lista de personas
-       
-        // ahora para recuperar infromacion
-        var personas = personaService.listarPersona();
+         model.addAttribute("personas", personas); 
+        
         var saldoTotal =0D;
         for(var p : personas){
         saldoTotal += p.getCliente_saldo();
@@ -50,7 +51,7 @@ public class ControladorInicio {
 
 // se manda la lista vacia para verificar que funcionen los if
 //List <Persona> personas = new ArrayList<>(); 
-        model.addAttribute("personas", personas);
+      
        
         return "index";
     }
@@ -69,6 +70,7 @@ public class ControladorInicio {
         personaService.guardar(persona);
         return "redirect:/";
     }
+    
 
     @GetMapping("/editar/{idCliente}")
     public String editar(Persona persona, Model model) {
