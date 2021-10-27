@@ -16,11 +16,8 @@
             
             <section th:replace="layout/botonesAgregar :: botonesAgregar"></section>
             <section th:replace="layout/listadoClientes :: listadoClientes"></section>
-            <!--
             <section th:replace="layout/agregarCliente :: agregarCliente"></section>
-            
-           -->
-            <footer th:replace="layout/plantilla ::footer"></footer>
+            <footer th:replace="layout/plantilla :: footer"></footer>
             
             <!-- se agregar seguridad dependiendo en el usuario -->
             <a sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{/agregar}">[[#{persona.crear}]]</a>

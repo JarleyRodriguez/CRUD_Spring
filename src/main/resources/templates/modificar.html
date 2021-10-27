@@ -1,59 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
-    <head th:replace="layout/plantilla ::head">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+    
+    <head th:replace="layout/plantilla :: head">
         <title>Datos de la persona</title>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"/>
     </head>
     <body>
-        <header th:replace="layout/plantilla ::header"></header>
-
-        <section id="actions" class="py-4 mb-4 bg-light">
-            <div class="container">
-                <div class="row">
-                    <h2 th:text="#{persona.datosPersona}"></h2>
-                </div>
-            </div>
-        </section>
-        <section id="login">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 mx-auto">
-                        <div class="card">
-                            <div class="card-header">
-                                <a th:href="@{/}">[[#{action.regresar}]]</a>
-                            </div>
-                            <div class="card-body">
-                                <form th:action="@{/guardar}" method="post" th:object="${persona}">
-                                    <input type="hidden" name="idCliente" th:field = "*{idCliente}"/>
-                                    <label for="cliente_nombre">[[#{persona.nombre}]] :</label>
-                                    <input type="text" name="nombre" th:field ="*{cliente_nombre}">
-                                    <span th:if="${#fields.hasErrors('cliente_nombre')}" th:errors="*{cliente_nombre}">Error del nombre</span><!-- para validar si hay errores en el imput i 
-                                    ntroduciodo-->
-                                    <br>
-                                    <label for="cliente_apellido">[[#{persona.apellido}]] :</label>
-                                    <input type="text" name="apellido" th:field ="*{cliente_apellido}">
-                                    <span th:if="${#fields.hasErrors('cliente_apellido')}"th:errors="*{cliente_apellido}">Error del apellido</span>
-                                    <br>
-                                    <label for="cliente_email">[[#{persona.email}]] :</label>
-                                    <input type="text" name="email" th:field ="*{cliente_email}">
-                                    <span th:if="${#fields.hasErrors('cliente_email')}"th:errors="*{cliente_email}">Error del email</span>
-                                    <br>
-                                    <label for="cliente_telefono">[[#{persona.telefono}]] :</label>
-                                    <input type="text" name="telefono" th:field ="*{cliente_telefono}">
-                                    <span th:if="${#fields.hasErrors('cliente_telefono')}"th:errors="*{cliente_telefono}">Error del telefono</span>
-                                    <br>
-                                    <label for="cliente_saldo">[[#{persona.saldo}]] :</label>
-                                    <input type="text" name="saldo" th:field ="*{cliente_saldo}">
-                                    <br>
-                                    <input type="submit" th:value="#{action.guardar}" name="guardar" >
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
+        <header th:replace="layout/plantilla :: header"></header>
+        <section th:replace="layout/editarCliente :: editarCliente"></section>
+        <footer th:replace="layout/plantilla :: footer"></footer>
 
     </body>
-    <footer th:replace="layout/plantilla :: footer"></footer>
+    
 </html>
